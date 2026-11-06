@@ -56,10 +56,6 @@ print(df.speed.unique())            # [1.029 2.058 3.087 4.116 5.144]
 print(df.groupby(geom).ngroups)     # 70 hull forms
 ```
 
-## Related publication
-
-Xu, L., et al. "Unmanned Underwater Vehicle Resistance Prediction Model Integrating
-Boundary Layer Prior Embedding and Hierarchical Fuzzy Cascading." 
 
 ## License
 
