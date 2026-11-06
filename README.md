@@ -1,8 +1,5 @@
 # Data for "Unmanned Underwater Vehicle Resistance Prediction Model Integrating Boundary Layer Prior Embedding and Hierarchical Fuzzy Cascading"
 
-This repository contains the CFD-computed resistance dataset used in the above manuscript
-
-
 ## Overview
 
 The dataset covers **70 Myring-type UUV hull forms** at **five advance speeds**
