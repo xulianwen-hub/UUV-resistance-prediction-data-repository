@@ -1,28 +1,77 @@
-Creative Commons Attribution 4.0 International (CC BY 4.0)
+# Data for "Unmanned Underwater Vehicle Resistance Prediction Model Integrating Boundary Layer Prior Embedding and Hierarchical Fuzzy Cascading"
 
-Copyright (c) 2026 Liangwen Xu
+This repository contains the CFD-computed resistance dataset used in the above manuscript
+(*Ships and Offshore Structures*, Taylor & Francis).
 
-This dataset is licensed under the Creative Commons Attribution 4.0
-International License. To view a copy of this license, visit
-https://creativecommons.org/licenses/by/4.0/ or send a letter to
-Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+## Overview
 
-You are free to:
+The dataset covers **70 Myring-type UUV hull forms** at **five advance speeds**
+(1.029, 2.058, 3.087, 4.116 and 5.144 m/s), giving **350 records** in total.
+For each hull form and speed, the pressure resistance, the frictional resistance and
+the total resistance are given.
 
-  Share — copy and redistribute the material in any medium or format
+## Files
 
-  Adapt — remix, transform, and build upon the material for any purpose,
-  even commercially
+| File | Description |
+|---|---|
+| `resistance_data.csv` | Main dataset, comma-separated, UTF-8, header row included (350 data rows) |
+| `LICENSE` | Creative Commons Attribution 4.0 International (CC BY 4.0) |
 
-Under the following terms:
+## Data dictionary
 
-  Attribution — You must give appropriate credit, provide a link to the
-  license, and indicate if changes were made. You may do so in any
-  reasonable manner, but not in any way that suggests the licensor
-  endorses you or your use.
+| Column | Unit | Description |
+|---|---|---|
+| `Length` | m | Overall hull length |
+| `Width` | m | Maximum hull diameter |
+| `Entry Length` | m | Length of the fore (entry) body |
+| `Run Length` | m | Length of the aft (run) body |
+| `fullness inflow` | – | Fullness coefficient of the fore (entry) segment, dimensionless |
+| `fullness midship` | – | Fullness coefficient of the parallel middle body, dimensionless |
+| `fullness out` | – | Fullness coefficient of the aft (run) segment, dimensionless |
+| `speed` | m/s | Advance speed of the vehicle |
+| `P` | N | Pressure (form) resistance |
+| `S` | N | Frictional (skin-friction) resistance |
+| `P+S` | N | Total resistance |
 
-  No additional restrictions — You may not apply legal terms or
-  technological measures that legally restrict others from doing
-  anything the license permits.
+The seven geometry columns (`Length` … `fullness out`) are repeated for every speed, so
+each hull form appears five times, once per speed.
 
-Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+## How to use
+
+1. Group the rows by the seven geometry columns to recover the 70 individual hull forms.
+2. Sort by `speed` within each group to obtain the resistance–speed curve of that hull form.
+3. `P+S` equals `P + S` for every row, so the total can be recomputed from the two components.
+
+Minimal example (Python):
+
+```python
+import pandas as pd
+
+df = pd.read_csv("resistance_data.csv")
+geom = ["Length", "Width", "Entry Length", "Run Length",
+        "fullness inflow", "fullness midship", "fullness out"]
+
+print(df.shape)                     # (350, 11)
+print(df.speed.unique())            # [1.029 2.058 3.087 4.116 5.144]
+print(df.groupby(geom).ngroups)     # 70 hull forms
+```
+
+## Related publication
+
+Xu, L., et al. "Unmanned Underwater Vehicle Resistance Prediction Model Integrating
+Boundary Layer Prior Embedding and Hierarchical Fuzzy Cascading." *Ships and Offshore
+Structures* (under review).
+
+If you use this dataset, please cite the article above and the archived version of this
+repository.
+
+## License
+
+The dataset is released under the
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+licence. You are free to share and adapt the data for any purpose, provided appropriate
+credit is given.
+
+## Contact
+
+Liangwen Xu — GitHub: [@xulianwen-hub](https://github.com/xulianwen-hub)
