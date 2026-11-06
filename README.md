@@ -59,11 +59,7 @@ print(df.groupby(geom).ngroups)     # 70 hull forms
 ## Related publication
 
 Xu, L., et al. "Unmanned Underwater Vehicle Resistance Prediction Model Integrating
-Boundary Layer Prior Embedding and Hierarchical Fuzzy Cascading." *Ships and Offshore
-Structures* (under review).
-
-If you use this dataset, please cite the article above and the archived version of this
-repository.
+Boundary Layer Prior Embedding and Hierarchical Fuzzy Cascading." 
 
 ## License
 
