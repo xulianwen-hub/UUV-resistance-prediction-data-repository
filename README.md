@@ -30,8 +30,6 @@ the total resistance are given.
 | `S` | N | Frictional (skin-friction) resistance |
 | `P+S` | N | Total resistance |
 
-The seven geometry columns (`Length` … `fullness out`) are repeated for every speed, so
-each hull form appears five times, once per speed.
 
 ## How to use
 
